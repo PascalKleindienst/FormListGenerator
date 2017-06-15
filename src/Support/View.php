@@ -45,7 +45,7 @@ class View
      * @throws \InvalidArgumentException if the file could not be found
      */
     public function render($file, array $data = [])
-    {   
+    {
         // Check if file exists
         $fullpath = $this->getFileName($file);
         
@@ -67,5 +67,15 @@ class View
     protected function getFileName($file)
     {
         return $this->path . '/_' . $file . $this->extension;
+    }
+
+    /**
+     * Return path
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
     }
 }
