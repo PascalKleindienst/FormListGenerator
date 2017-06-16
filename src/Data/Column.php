@@ -60,10 +60,11 @@ class Column
 
     /**
      * Constructor.
-     * @param string $columnName
-     * @param string $label
+     * @param string $name
+     * @param array $config
+     * @param string $recordUrl
      */
-    public function __construct($name, $config, $recordUrl)
+    public function __construct($name, array $config, $recordUrl)
     {
         $this->columnName = $name;
         $this->config = $config;
