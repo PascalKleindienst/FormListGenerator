@@ -90,7 +90,6 @@ abstract class AbstractField
         $this->fieldName = $name;
         $this->config = $config;
         $this->builder = new FormBuilder();
-        $this->setup();
     }
 
     /**
@@ -98,7 +97,7 @@ abstract class AbstractField
      *
      * @return void
      */
-    protected function setup()
+    public function setup()
     {
         // type
         $this->type = isset($this->config['type']) ? strtolower($this->config['type']) : $this->type;
