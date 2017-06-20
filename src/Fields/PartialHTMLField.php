@@ -45,15 +45,14 @@ class PartialHTMLField extends AbstractField
             }
 
             return $content;
-        }
-        // Display a partial
-        else if ($this->type === 'partial') {
+        } // Display a partial
+        elseif ($this->type === 'partial') {
             // Replace ~ with root path
             $this->path = str_replace('~', Config::get('root'), $this->path);
 
             if (file_exists($this->path)) {
                 $value = $record;
-                include ($this->path);
+                include($this->path);
             }
         }
         
