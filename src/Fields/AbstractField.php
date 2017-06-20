@@ -103,7 +103,9 @@ abstract class AbstractField
         $this->type = isset($this->config['type']) ? strtolower($this->config['type']) : $this->type;
 
         // save value of properties if they exist
-        $configKeys = $this->registerConfigKeys() +  ['cssClass', 'default', 'description', 'label', 'readOnly', 'disabled', 'required', 'attributes'];
+        $configKeys = $this->registerConfigKeys() + [
+            'cssClass', 'default', 'description', 'label', 'readOnly', 'disabled', 'required', 'attributes'
+        ];
 
         foreach ($configKeys as $key) {
             if (isset($this->config[$key])) {
