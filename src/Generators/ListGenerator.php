@@ -17,6 +17,7 @@ class ListGenerator extends AbstractGenerator
         $this->config['columns'] = $this->getConfigItem('columns', []);
         
         foreach ($this->config['columns'] as $column => $config) {
+            $config['label'] = $this->translate($config['label']);
             $this->config['columns'][$column] = $this->createColumn($column, $config);
         }
         
