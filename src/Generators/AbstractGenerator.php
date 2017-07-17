@@ -42,8 +42,20 @@ abstract class AbstractGenerator
         }
 
         // init view lib
-        $viewPath = array_key_exists('customViewPath', $this->config) ? $this->config['customViewPath'] : '';
+        $viewPath = $this->getConfigItem('customViewPath', '');
         $this->view = new View($viewPath);
+    }
+
+    /**
+     * Get a item from the config array or a default value if it does not exist
+     *
+     * @param string $item
+     * @param mixed $default
+     * @return mixed
+     */
+    public function getConfigItem($item, $default = null)
+    {
+        return array_key_exists($item, $this->config) ? $this->config[$item] : $default;
     }
 
     /**

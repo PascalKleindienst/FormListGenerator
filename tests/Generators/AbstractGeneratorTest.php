@@ -1,6 +1,7 @@
 <?php namespace PascalKleindienst\FormListGenerator\Generators;
 
 use PascalKleindienst\FormListGenerator\Support\View;
+use \PascalKleindienst\FormListGenerator\Support\Config;
 
 /**
  * AbstractGenerator Testcase
@@ -27,7 +28,7 @@ class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructorWithInvalidYamlConfigFile()
     {
-        \PascalKleindienst\FormListGenerator\Support\Config::set(['root' => __DIR__]);
+        Config::set(['root' => __DIR__]);
         $this->getMockForAbstractClass(AbstractGenerator::class, ['invalid.yaml']);
     }
 
@@ -36,8 +37,20 @@ class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructorWithValidConfig()
     {
-        \PascalKleindienst\FormListGenerator\Support\Config::set(['root' => __DIR__]);
+        Config::set(['root' => __DIR__]);
         $stub = $this->getMockForAbstractClass(AbstractGenerator::class, ['config.yaml']);
         $this->assertEquals(__DIR__ . '/views', $stub->view->getPath());
+    }
+
+     /**
+     * @dependsOn testConstructorWithValidConfig
+     */
+    public function testGetConfigItem()
+    {
+        Config::set(['root' => __DIR__]);
+        $stub = $this->getMockForAbstractClass(AbstractGenerator::class, ['config.yaml']);
+
+        $this->assertEquals('bar', $stub->getConfigItem('foo'));
+        $this->assertEquals('default item', $stub->getConfigItem('foobar', 'default item'));
     }
 }
