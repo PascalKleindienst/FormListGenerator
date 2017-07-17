@@ -1,0 +1,19 @@
+<?php foreach ($records as $record): ?>
+    <tr class="">
+
+    <?php $index = $url = 0; foreach ($columns as $key => $column): ?>
+        <?php $index++; ?>
+        <td class="list-cell-index-<?= $index ?> list-cell-name-<?= $column->columnName ?> list-cell-type-<?= $column->type ?> <?= $column->cssClass ?>">
+            <?php if ($column->clickable && !$url && ($url = $column->getRecordUrl($record))): ?>
+                <a href="<?= $url ?>">
+                     <?= $column->getValue($record) ?>
+                </a>
+            <?php else: ?>
+                <?= $column->getValue($record) ?>
+            <?php endif ?>
+        </td>
+    <?php endforeach ?>
+
+</tr>
+
+<?php endforeach ?>

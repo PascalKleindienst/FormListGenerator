@@ -1,0 +1,7 @@
+<tr>
+    <?php foreach ($columns as $key => $column): ?>
+        <th class="list-cell-name-<?= $column->columnName ?> list-cell-type-<?= $column->type ?>">
+            <span><?= $column->label ?></span>
+        </th>
+    <?php endforeach ?>
+</tr>

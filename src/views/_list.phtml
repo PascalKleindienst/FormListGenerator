@@ -1,0 +1,16 @@
+<table class="table data" data-control="rowlink">
+    <thead>
+        <?php $this->render('list_head_row', ['columns' => $columns]) ?>
+    </thead>
+    <tbody>
+        <?php if (count($records)): ?>
+            <?php $this->render('list_body_rows', ['records' => $records, 'columns' => $columns]) ?>
+        <?php else: ?>
+            <tr class="no-data">
+                <td colspan="<?= $columnTotal ?>" class="nolink">
+                    <p class="no-data"><?= $noRecordsMessage ?></p>
+                </td>
+            </tr>
+        <?php endif ?>
+    </tbody>
+</table>
