@@ -9,7 +9,7 @@ class Config
     /**
      * @var array
      */
-    static protected $items = [];
+    protected static $items = [];
 
     /**
      * Set config items

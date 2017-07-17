@@ -42,7 +42,7 @@ abstract class AbstractGenerator
      */
     public function load($config)
     {
-         // Load config
+        // Load config
         if ($config !== '') {
             $config = Config::get('root', '') . '/' . $config;
 
