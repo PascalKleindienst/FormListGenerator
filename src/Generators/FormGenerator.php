@@ -47,7 +47,9 @@ class FormGenerator extends AbstractGenerator
     {
         $fields = ['label', 'description', 'comment', 'placeholder'];
         foreach ($fields as $field) {
-            $config[$field] = $this->translate($config[$field]);
+            if (array_key_exists($field, $config)) {
+                $config[$field] = $this->translate($config[$field]);
+            }
         }
         
         return $config;
