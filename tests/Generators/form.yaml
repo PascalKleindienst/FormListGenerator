@@ -2,3 +2,5 @@ fields:
   test:
     label: Test
     description: Some Description
+    comment: Some Comment
+    placeholder: Some Placeholder
