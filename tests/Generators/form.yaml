@@ -1,0 +1,4 @@
+fields:
+  test:
+    label: Test
+    description: Some Description

@@ -1,0 +1,8 @@
+<?php foreach($fields as $field) : ?>
+    <div class="form-group col-md-6">
+        <?php echo $field->getValue($records); ?>
+        <?php if (isset($field->description)) : ?>
+            <small class="form-text text-muted"><?php echo $field->description ?></small>
+        <?php endif; ?>
+    </div>
+<?php endforeach; ?>
