@@ -110,7 +110,7 @@ abstract class AbstractField
         // save value of properties if they exist
         $configKeys = array_merge(
             $this->registerConfigKeys(),
-            [ 'cssClass', 'default', 'description', 'label', 'readOnly', 'disabled', 'required', 'attributes', 'options' ]
+            ['cssClass', 'default', 'description', 'label', 'readOnly', 'disabled', 'required', 'attributes', 'options']
         );
         
         foreach ($configKeys as $key) {
