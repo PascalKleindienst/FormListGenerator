@@ -12,11 +12,6 @@ class Field extends AbstractField
     public $placeholder = '';
 
     /**
-     * @var array Options used for a select tag
-     */
-    public $options = [];
-
-    /**
      * @var mixed Default value for the input element
      */
     public $default;
@@ -26,7 +21,7 @@ class Field extends AbstractField
      */
     protected function registerConfigKeys()
     {
-        return [ 'placeholder', 'options' ];
+        return [ 'placeholder' ];
     }
 
     /**

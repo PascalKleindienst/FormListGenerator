@@ -35,6 +35,23 @@ class AbstractFieldTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $mock->{$property});
     }
 
+    public function testGetOptions()
+    {
+        $stub = $this->getFieldMock([
+            'test-property-options', 
+            [
+                'options' => function () {
+                    return ['attr-1', 'attr-2'];
+                }
+            ]
+        ]);
+        $class = new \ReflectionClass($stub);
+        $method = $class->getMethod('getOptions');
+        $method->setAccessible(true);
+
+        $this->assertEquals(['attr-1', 'attr-2'], $method->invokeArgs($stub, []));
+    }
+
     public function configProvider()
     {
         return [

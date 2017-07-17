@@ -7,16 +7,11 @@
 class RadioCheckboxList extends AbstractField
 {
     /**
-     * @var array Key-Value Pairs for the radio button list
-     */
-    public $options = [];
-
-    /**
      * {@inheritDoc}
      */
     protected function registerConfigKeys()
     {
-        return [ 'options' ];
+        return [];
     }
 
     /**

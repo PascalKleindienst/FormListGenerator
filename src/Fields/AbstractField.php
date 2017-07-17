@@ -44,6 +44,11 @@ abstract class AbstractField
     public $attributes = [];
 
     /**
+     * @var array Options used for a select tag or radio/checkboxlist
+     */
+    public $options = [];
+
+    /**
      * @var boolean Whether the input is disabled or not
      */
     public $disabled = false;
@@ -105,7 +110,7 @@ abstract class AbstractField
         // save value of properties if they exist
         $configKeys = array_merge(
             $this->registerConfigKeys(),
-            [ 'cssClass', 'default', 'description', 'label', 'readOnly', 'disabled', 'required', 'attributes' ]
+            [ 'cssClass', 'default', 'description', 'label', 'readOnly', 'disabled', 'required', 'attributes', 'options' ]
         );
         
         foreach ($configKeys as $key) {
