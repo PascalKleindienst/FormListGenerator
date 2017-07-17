@@ -64,4 +64,21 @@ class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('bar', $stub->getConfigItem('foo'));
         $this->assertEquals('default item', $stub->getConfigItem('foobar', 'default item'));
     }
+
+    public function testTranslateWithoutTranslator()
+    {
+        Config::set(['root' => __DIR__]);
+        $stub = $this->getMockForAbstractClass(AbstractGenerator::class, ['config.yaml']);
+
+        $this->assertEquals('bar', $stub->translate('bar'));
+    }
+
+    public function testTranslateWithTranslator()
+    {
+        Config::set(['root' => __DIR__]);
+        $stub = $this->getMockForAbstractClass(AbstractGenerator::class, ['config.yaml']);
+        $stub->setTranslator(function ($str) { return 'foo: ' . $str; });
+
+        $this->assertEquals('foo: bar', $stub->translate('bar'));
+    }
 }

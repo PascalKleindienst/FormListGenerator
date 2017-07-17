@@ -16,6 +16,11 @@ abstract class AbstractGenerator
     protected $config = [];
 
     /**
+     * @var callable
+     */
+    protected $translator;
+
+    /**
      * @var \PascalKleindienst\FormListGenerator\Support\View View Library
      */
     public $view;
@@ -73,6 +78,32 @@ abstract class AbstractGenerator
     public function getConfigItem($item, $default = null)
     {
         return array_key_exists($item, $this->config) ? $this->config[$item] : $default;
+    }
+
+    /**
+     * Set a translator to add support for localization
+     *
+     * @param callable $translator
+     * @return void
+     */
+    public function setTranslator(callable $translator)
+    {
+        $this->translator = $translator;
+    }
+
+    /**
+     * Translate a message with the translator component
+     *
+     * @param string $message
+     * @return string
+     */
+    public function translate($message)
+    {
+        if (!is_callable($this->translator)) {
+            return $message;
+        }
+
+        return call_user_func($this->translator, $message);
     }
 
     /**
