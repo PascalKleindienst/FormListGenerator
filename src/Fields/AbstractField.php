@@ -34,6 +34,11 @@ abstract class AbstractField
     public $cssClass;
 
     /**
+     * @var string specify the form field size. Options: half, full
+     */
+    public $size = 'full';
+
+    /**
      * @var array Raw field configuration.
      */
     public $config;
@@ -110,7 +115,8 @@ abstract class AbstractField
         // save value of properties if they exist
         $configKeys = array_merge(
             $this->registerConfigKeys(),
-            ['cssClass', 'default', 'description', 'label', 'readOnly', 'disabled', 'required', 'attributes', 'options']
+            ['cssClass', 'default', 'description', 'label', 'readOnly', 'disabled', 'required', 
+            'attributes', 'options', 'size']
         );
         
         foreach ($configKeys as $key) {

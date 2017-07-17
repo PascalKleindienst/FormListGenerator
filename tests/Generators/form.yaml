@@ -4,3 +4,6 @@ fields:
     description: Some Description
     comment: Some Comment
     placeholder: Some Placeholder
+  testSize:
+    label: Size
+    size: half
