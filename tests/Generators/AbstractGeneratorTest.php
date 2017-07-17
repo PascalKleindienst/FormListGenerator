@@ -49,7 +49,8 @@ class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
     {
         Config::set(['root' => __DIR__]);
         $stub = $this->getMockForAbstractClass(AbstractGenerator::class, ['empty_config.yaml']);
-        $this->assertEquals(realpath(__DIR__ . '/../../src/views'), $stub->view->getPath());;
+        $this->assertEquals(realpath(__DIR__ . '/../../src/views'), $stub->view->getPath());
+        ;
     }
 
      /**

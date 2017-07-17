@@ -38,7 +38,7 @@ class AbstractFieldTest extends \PHPUnit_Framework_TestCase
     public function testGetOptions()
     {
         $stub = $this->getFieldMock([
-            'test-property-options', 
+            'test-property-options',
             [
                 'options' => function () {
                     return ['attr-1', 'attr-2'];
