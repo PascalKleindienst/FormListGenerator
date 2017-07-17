@@ -29,7 +29,20 @@ abstract class AbstractGenerator
      */
     public function __construct($config = '')
     {
-        // Load config
+        $this->load($config);
+    }
+
+    /**
+     * Load the config file
+     *
+     * @param string $config
+     * @throws \InvalidArgumentException if no config file is found
+     * @throws \Symfony\Component\Yaml\Exception\ParseException if the yaml file could not be parsed
+     * @return void
+     */
+    public function load($config)
+    {
+         // Load config
         if ($config !== '') {
             $config = Config::get('root', '') . '/' . $config;
 
@@ -39,6 +52,10 @@ abstract class AbstractGenerator
 
             // try to parse config
             $this->config = Yaml::parse(file_get_contents($config));
+
+            if (!is_array($this->config)) {
+                $this->config = [];
+            }
         }
 
         // init view lib
