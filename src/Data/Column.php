@@ -26,7 +26,7 @@ class Column
     /**
      * @var boolean Specifies whether a column is clickable or not
      */
-    public $clickable = false;
+    public $clickable = true;
 
     /**
      * @var string Specifies a default value when value is empty.

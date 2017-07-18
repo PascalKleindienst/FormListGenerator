@@ -24,7 +24,7 @@ class ColumnTest extends \PHPUnit_Framework_TestCase
         $col = new Column('', [], '');
         
         $this->assertEquals('text', $col->type);
-        $this->assertFalse($col->clickable);
+        $this->assertTrue($col->clickable);
         $this->assertEquals('', $col->columnName, 'Empty Column Name');
         $this->assertEquals('', $col->path, 'Empty path');
         $this->assertNull($col->label, 'Label not set');

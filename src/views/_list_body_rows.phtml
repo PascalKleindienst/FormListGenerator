@@ -4,7 +4,7 @@
     <?php $index = $url = 0; foreach ($columns as $key => $column): ?>
         <?php $index++; ?>
         <td class="list-cell-index-<?= $index ?> list-cell-name-<?= $column->columnName ?> list-cell-type-<?= $column->type ?> <?= $column->cssClass ?>">
-            <?php if ($column->clickable && !$url && ($url = $column->getRecordUrl($record))): ?>
+            <?php if ($column->clickable && ($url = $column->getRecordUrl($record))): ?>
                 <a href="<?= $url ?>">
                      <?= $column->getValue($record) ?>
                 </a>
