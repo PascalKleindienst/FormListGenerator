@@ -34,9 +34,32 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
             '    <div class="form-group col-md-12">' . PHP_EOL .
             '        <label class="d-block">Test<label class="d-block  "><input type="text" name="test" value="Testing" placeholder="Some Placeholder"> Some Comment</label></label>' .
             '                    <small class="form-text text-muted">Some Description</small>'  . PHP_EOL .
+            '                    </div>' . PHP_EOL .
+            '    <div class="form-group col-md-6">' . PHP_EOL .
+            '        <label class="d-block">Size<input type="text" name="testSize" class=" form-control"></label>                    </div>' . PHP_EOL,
+            ob_get_contents()
+        );
+        ob_end_clean();
+    }
+
+    /**
+     * @runInSeparateProcess
+     * @preserveGlobalState disabled
+     */
+    public function testRenderWithErrors()
+    {
+        ob_start();
+        date_default_timezone_set('Europe/Berlin');
+        $this->generator->render(['test' => 'Testing'], ['test' => 'some error']);
+        $this->assertEquals(
+            '    <div class="form-group col-md-12 has-danger">' . PHP_EOL .
+            '        <label class="d-block">Test<label class="d-block  "><input type="text" name="test" value="Testing" placeholder="Some Placeholder"> Some Comment</label></label>' .
+            '                    <small class="form-text text-muted">Some Description</small>' . PHP_EOL .
+            '                            <span class="form-control-feedback">' . PHP_EOL .
+            '            some error            </span>' . PHP_EOL .
             '            </div>' . PHP_EOL .
             '    <div class="form-group col-md-6">' . PHP_EOL .
-            '        <label class="d-block">Size<input type="text" name="testSize" class=" form-control"></label>            </div>' . PHP_EOL,
+            '        <label class="d-block">Size<input type="text" name="testSize" class=" form-control"></label>                    </div>' . PHP_EOL,
             ob_get_contents()
         );
         ob_end_clean();
@@ -55,9 +78,9 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
             '    <div class="form-group col-md-12">' . PHP_EOL .
             '        <label class="d-block">Translated: Test<label class="d-block  "><input type="text" name="test" value="Testing" placeholder="Translated: Some Placeholder"> ' .
             'Translated: Some Comment</label></label>                    <small class="form-text text-muted">Translated: Some Description</small>' . PHP_EOL .
-            '            </div>' . PHP_EOL .
+            '                    </div>' . PHP_EOL .
             '    <div class="form-group col-md-6">' . PHP_EOL .
-            '        <label class="d-block">Translated: Size<input type="text" name="testSize" class=" form-control"></label>            </div>' . PHP_EOL,
+            '        <label class="d-block">Translated: Size<input type="text" name="testSize" class=" form-control"></label>                    </div>' . PHP_EOL,
             ob_get_contents()
         );
         ob_end_clean();

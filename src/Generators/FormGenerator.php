@@ -11,7 +11,7 @@ class FormGenerator extends AbstractGenerator
     /**
      * {@inheritDoc}
      */
-    public function render(array $data = [])
+    public function render(array $data = [], array $errors = [])
     {
         // transform fields
         $factory = $this->getFactory();
@@ -23,7 +23,8 @@ class FormGenerator extends AbstractGenerator
         
         // Render list view
         $viewData = [
-            'records' => $data
+            'records' => $data,
+            'errors' => $errors
         ];
         $this->view->render('form', $viewData + $this->config);
     }

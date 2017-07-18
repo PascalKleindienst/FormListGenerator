@@ -1,8 +1,19 @@
-<?php foreach($fields as $field) : ?>
-    <div class="form-group <?php echo ($field->size === 'half') ? 'col-md-6' : 'col-md-12' ?>">
+<?php foreach($fields as $key => $field) : ?>
+    <div class="form-group <?php echo ($field->size === 'half') ? 'col-md-6' : 'col-md-12' ?><?php echo array_key_exists($key, $errors)  ? ' has-danger' : '' ?>">
         <?php echo $field->getValue($records); ?>
         <?php if (isset($field->description)) : ?>
             <small class="form-text text-muted"><?php echo $field->description ?></small>
+        <?php endif; ?>
+        <?php if (array_key_exists($key, $errors)) : ?>
+            <span class="form-control-feedback">
+            <?php 
+                if (is_array($errors[$key])) {
+                    echo $errors[$key][0];
+                } else if (is_string($errors[$key])) {
+                    echo $errors[$key];
+                }
+            ?>
+            </span>
         <?php endif; ?>
     </div>
 <?php endforeach; ?>
