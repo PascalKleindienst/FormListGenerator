@@ -5,23 +5,10 @@
 [![Build Status][ico-travis]][link-travis]
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
+[![Code Style][ico-code-style]][link-code-style]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
-
-## Structure
-
-If any of the following are applicable to your project, then the directory structure should follow industry best practises by being named the following.
-
-```
-bin/        
-config/
-src/
-tests/
-vendor/
-```
-
+FormListGenerator is a small library to easily display data as a table-list or a form. Its main application area is in admin/backend applications.
 
 ## Install
 
@@ -34,9 +21,64 @@ $ composer require PascalKleindienst/FormListGenerator
 ## Usage
 
 ``` php
-$skeleton = new PascalKleindienst\FormListGenerator();
-echo $skeleton->echoPhrase('Hello, League!');
+use PascalKleindienst\FormListGenerator\Generators\ListGenerator;
+use PascalKleindienst\FormListGenerator\Generators\FormGenerator;
+use PascalKleindienst\FormListGenerator\Support\Config;
+
+# set the root path of the application
+Config::set(['root' => dirname(__FILE__)]);
+
+// Init Generators with yaml config
+$list = new ListGenerator('list.yaml'); 
+$form = new FormGenerator('form.yaml');
+
+// Alternatively, we can use the load method (useful when you put the generator class in a container)
+$list = new ListGenerator(); 
+$form = new FormGenerator();
+$list = $list->load('list.yaml');
+$form = $form->load('form.yaml');
+
+// Render List
+# some example date, usually fetched from your DB
+$listData = [
+    [
+        'id'         => 1,
+        'full_name'  => 'John Doe',
+        'age'        => 42,
+        'created_at' => time(),
+        'content'    => 'lorem ipsum'
+    ],
+    [
+        'id'         => 2,
+        'full_name'  => 'John Doe',
+        'age'        => 42,
+        'created_at' => time(),
+        'content'    => 'lorem ipsum'
+    ]
+];
+$list->render($listData);
+
+// Render the form
+$formData = [
+    'id'         => 1,
+    'full_name'  => 'John Doe',
+    'age'        => 42,
+    'created_at' => time(),
+    'content'    => 'lorem ipsum'
+];
+$form->render($formData);
 ```
+
+### Configuration
+See [docs/form.md](docs/form.md) and [docs/list.md](docs/list.md)
+
+### Localization
+You're also able to translate your message to another language. The only thing one must do is to set the attribute translator as a callable that will handle the translation:
+```php
+$form->setTranslator('gettext');
+$list->setTranslator('gettext');
+```
+The example above uses `gettext()` but you can use any other callable value, like `[$translator, 'trans']` or `your_custom_function()`.
 
 ## Testing
 
@@ -66,6 +108,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [ico-travis]: https://img.shields.io/travis/PascalKleindienst/FormListGenerator/master.svg?style=flat-square
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/PascalKleindienst/FormListGenerator.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/PascalKleindienst/FormListGenerator.svg?style=flat-square
+[ico-code-style]: https://styleci.io/repos/94441385/shield?branch=master
 [ico-downloads]: https://img.shields.io/packagist/dt/PascalKleindienst/FormListGenerator.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/PascalKleindienst/FormListGenerator
@@ -75,3 +118,4 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-downloads]: https://packagist.org/packages/PascalKleindienst/FormListGenerator
 [link-author]: https://github.com/PascalKleindienst
 [link-contributors]: ../../contributors
+[link-code-style]: https://styleci.io/repos/94441385
