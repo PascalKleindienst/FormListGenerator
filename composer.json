@@ -1,7 +1,7 @@
 {
     "name": "PascalKleindienst/FormListGenerator",
     "type": "library",
-    "description": "",
+    "description": "Small library to easily display data as a table-list or a form. Its main application area is in admin/backend applications.",
     "keywords": [
         "PascalKleindienst",
         "FormListGenerator"
