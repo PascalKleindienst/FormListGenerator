@@ -44,7 +44,7 @@ class ListGeneratorTest extends \PHPUnit_Framework_TestCase
         );
         
         ob_end_clean();
-    } 
+    }
 
     /**
      * @runInSeparateProcess
