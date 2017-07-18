@@ -42,10 +42,6 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
         ob_end_clean();
     }
 
-    /**
-     * @runInSeparateProcess
-     * @preserveGlobalState disabled
-     */
     public function testRenderTranslated()
     {
         ob_start();
@@ -57,12 +53,11 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->generator->render(['test' => 'Testing']);
         $this->assertEquals(
             '    <div class="form-group col-md-12">' . PHP_EOL .
-            '        <label class="d-block">Translated: Test<label class="d-block  "><input type="text" name="test" value="Testing" placeholder="Translated: Some Placeholder">' .
-            ' Translated: Some Comment</label></label>' .
-            '                    <small class="form-text text-muted">Translated: Some Description</small>'  . PHP_EOL .
+            '        <label class="d-block">Translated: Test<label class="d-block  "><input type="text" name="test" value="Testing" placeholder="Translated: Some Placeholder"> ' .
+            'Translated: Some Comment</label></label>                    <small class="form-text text-muted">Translated: Some Description</small>' . PHP_EOL .
             '            </div>' . PHP_EOL .
             '    <div class="form-group col-md-6">' . PHP_EOL .
-            '        <label class="d-block">Size<input type="text" name="testSize" class=" form-control"></label>            </div>' . PHP_EOL,
+            '        <label class="d-block">Translated: Size<input type="text" name="testSize" class=" form-control"></label>            </div>' . PHP_EOL,
             ob_get_contents()
         );
         ob_end_clean();
