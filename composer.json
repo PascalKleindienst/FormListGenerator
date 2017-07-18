@@ -1,10 +1,13 @@
 {
-    "name": "PascalKleindienst/FormListGenerator",
+    "name": "pascalkleindienst/form-list-generator",
     "type": "library",
     "description": "Small library to easily display data as a table-list or a form. Its main application area is in admin/backend applications.",
     "keywords": [
         "PascalKleindienst",
-        "FormListGenerator"
+        "FormListGenerator",
+        "backend",
+        "forms",
+        "lists"
     ],
     "homepage": "https://github.com/PascalKleindienst/FormListGenerator",
     "license": "MIT",
@@ -38,8 +41,7 @@
     "scripts": {
         "test": "phpunit",
         "check-style": "phpcs -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
-        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests",
-        "example-server": "php -S localhost:8888 -t examples examples/example.php"
+        "fix-style": "phpcbf -p --standard=PSR2 --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src tests"
     },
     "extra": {
         "branch-alias": {
