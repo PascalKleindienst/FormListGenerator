@@ -5,11 +5,12 @@ columns:
   full_name: # or shorthand: full_name: Full Name
     label: Full Name
     type: text
-    clickable: true
   age: # displays a number column aligned right
     label: Age
     type: Number
+    clickable: false
   created_at:
     label: Created At
     type: date
     format: M j, Y
+    clickable: false
