@@ -103,19 +103,19 @@ If you discover any security related issues, please email mail@pascalkleindienst
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/PascalKleindienst/FormListGenerator.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/pascalkleindienst/form-list-generator.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/PascalKleindienst/FormListGenerator/master.svg?style=flat-square
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/PascalKleindienst/FormListGenerator.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/PascalKleindienst/FormListGenerator.svg?style=flat-square
 [ico-code-style]: https://styleci.io/repos/94441385/shield?branch=master
-[ico-downloads]: https://img.shields.io/packagist/dt/PascalKleindienst/FormListGenerator.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/pascalkleindienst/form-list-generator.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/PascalKleindienst/FormListGenerator
+[link-packagist]: https://packagist.org/packages/pascalkleindienst/form-list-generator
 [link-travis]: https://travis-ci.org/PascalKleindienst/FormListGenerator
 [link-scrutinizer]: https://scrutinizer-ci.com/g/PascalKleindienst/FormListGenerator/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/PascalKleindienst/FormListGenerator
-[link-downloads]: https://packagist.org/packages/PascalKleindienst/FormListGenerator
+[link-downloads]: https://packagist.org/packages/pascalkleindienst/form-list-generator
 [link-author]: https://github.com/PascalKleindienst
 [link-contributors]: ../../contributors
 [link-code-style]: https://styleci.io/repos/94441385
