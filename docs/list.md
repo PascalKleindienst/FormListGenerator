@@ -86,7 +86,7 @@ created_at:
 
 ### Partial
 
-`partial` - renders a partial. Inside the partial these variables are available:`$value` is the default cell value, `$this` is the configured class object `PascalKleindienst\FormListGenerator\Data\Column`.
+`partial` - renders a partial. Inside the partial these variables are available:`$value` is the default cell value, `$record` is an array which contains the records for this row, `$this` is the configured class object `PascalKleindienst\FormListGenerator\Data\Column`.
 
 ```yaml
 content:
