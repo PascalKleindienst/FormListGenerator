@@ -15,7 +15,7 @@ FormListGenerator is a small library to easily display data as a table-list or a
 Via Composer
 
 ``` bash
-$ composer require PascalKleindienst/FormListGenerator
+$ composer require pascalkleindienst/form-list-generator
 ```
 
 ## Usage
