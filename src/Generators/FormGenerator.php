@@ -9,14 +9,28 @@ use PascalKleindienst\FormListGenerator\Fields\FieldFactory;
 class FormGenerator extends AbstractGenerator
 {
     /**
+     * Fields to be removed
+     * @var array
+     */
+    protected $remove = [];
+
+    /**
      * {@inheritDoc}
      */
     public function render(array $data = [], array $errors = [])
     {
-        // transform fields
+        // Init
         $factory = $this->getFactory();
         $this->config['fields'] = $this->getConfigItem('fields', []);
 
+        // Remove Fields
+        foreach ($this->remove as $field) {
+            if (array_key_exists($field, $this->config['fields'])) {
+                unset($this->config['fields'][$field]);
+            }
+        }
+
+        // transform fields
         foreach ($this->config['fields'] as $field => $config) {
             $this->config['fields'][$field] = $factory->create($field, $this->translateFields($config));
         }
@@ -37,6 +51,17 @@ class FormGenerator extends AbstractGenerator
     public function getFactory()
     {
         return new FieldFactory();
+    }
+
+    /**
+     * Mark fields which should be removed
+     *
+     * @param string $field
+     * @return void
+     */
+    public function removeField($field)
+    {
+        $this->remove[] = $field;
     }
 
     /**
