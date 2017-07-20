@@ -20,6 +20,11 @@ class ListGenerator extends AbstractGenerator
             $config['label'] = $this->translate($config['label']);
             $this->config['columns'][$column] = $this->createColumn($column, $config);
         }
+
+        // Translate no records message
+        if (array_key_exists('noRecordsMessage', $this->config)) {
+            $this->config['noRecordsMessage'] = $this->translate($this->config['noRecordsMessage']);
+        }
         
         // Render list view
         $viewData = [
