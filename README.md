@@ -25,8 +25,11 @@ use PascalKleindienst\FormListGenerator\Generators\ListGenerator;
 use PascalKleindienst\FormListGenerator\Generators\FormGenerator;
 use PascalKleindienst\FormListGenerator\Support\Config;
 
-# set the root path of the application
-Config::set(['root' => dirname(__FILE__)]);
+# set the root path of the application and optionally a baseUrl
+Config::set([
+    'root'    => dirname(__FILE__),
+    'baseUrl' => 'http://example.com'
+]);
 
 // Init Generators with yaml config
 $list = new ListGenerator('list.yaml'); 

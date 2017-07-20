@@ -144,6 +144,6 @@ class Column
             array_keys($record)
         );
         
-        return str_replace($search, $record, $this->recordUrl);
+        return Config::get('baseUrl', '') . str_replace($search, $record, $this->recordUrl);
     }
 }
