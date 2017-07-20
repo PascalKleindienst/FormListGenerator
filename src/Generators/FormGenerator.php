@@ -52,6 +52,14 @@ class FormGenerator extends AbstractGenerator
                 $config[$field] = $this->translate($config[$field]);
             }
         }
+
+        // Translate options
+        if (array_key_exists('options', $config) && is_array($config['options'])) {
+            var_dump($config['options']);
+            foreach ($config['options'] as $key => $value) {
+                $config['options'][$key] = $this->translate($value);
+            }
+        }
         
         return $config;
     }
