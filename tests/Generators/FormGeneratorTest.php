@@ -16,18 +16,19 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->generator = new FormGenerator('form.yaml');
     }
 
-    /** 
- 	 * @param  mixed $obj
- 	 * @param  string $propertyName
- 	 * @return mixed
- 	 */
-	public function getProperty($obj, $propertyName) {
-		$reflector = new \ReflectionClass($obj);
-		$property = $reflector->getProperty($propertyName);
-		$property->setAccessible(true);
+    /**
+     * @param  mixed $obj
+     * @param  string $propertyName
+     * @return mixed
+     */
+    public function getProperty($obj, $propertyName)
+    {
+        $reflector = new \ReflectionClass($obj);
+        $property = $reflector->getProperty($propertyName);
+        $property->setAccessible(true);
  
-		return $property->getValue($obj);
-	}
+        return $property->getValue($obj);
+    }
 
     public function testGetFactory()
     {
@@ -50,8 +51,8 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $this->getProperty($generator, 'config')['fields']);
         
         $generator->render([]);
-        $this->assertCount(1,$this->getProperty($generator, 'config')['fields']);
-        $this->assertArrayHasKey('testSize',$this->getProperty($generator, 'config')['fields']);
+        $this->assertCount(1, $this->getProperty($generator, 'config')['fields']);
+        $this->assertArrayHasKey('testSize', $this->getProperty($generator, 'config')['fields']);
     }
 
     public function testAddField()
@@ -70,8 +71,8 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->assertCount(2, $this->getProperty($generator, 'config')['fields']);
         
         $generator->render([]);
-        $this->assertCount(3,$this->getProperty($generator, 'config')['fields']);
-        $this->assertArrayHasKey('adding',$this->getProperty($generator, 'config')['fields']);
+        $this->assertCount(3, $this->getProperty($generator, 'config')['fields']);
+        $this->assertArrayHasKey('adding', $this->getProperty($generator, 'config')['fields']);
     }
 
     /**
