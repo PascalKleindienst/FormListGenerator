@@ -1,4 +1,5 @@
 <?php foreach ($records as $record): ?>
+    <?php $record = array_dot($record); #Flatten a multi-dimensional associative array with dots. ?>
     <tr class="">
 
     <?php $index = $url = 0; foreach ($columns as $key => $column): ?>

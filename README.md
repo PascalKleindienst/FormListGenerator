@@ -49,14 +49,22 @@ $listData = [
         'full_name'  => 'John Doe',
         'age'        => 42,
         'created_at' => time(),
-        'content'    => 'lorem ipsum'
+        'content'    => 'lorem ipsum',
+        'recursive'  => [ # accessed via dot notation in yaml => recursive.test or recursive.foo
+            'test' => 'Recursive Testing',
+            'foo'  => 'Foo'
+        ]
     ],
     [
         'id'         => 2,
         'full_name'  => 'John Doe',
         'age'        => 42,
         'created_at' => time(),
-        'content'    => 'lorem ipsum'
+        'content'    => 'lorem ipsum',
+        'recursive' [ # accessed via dot notation in yaml => recursive.test or recursive.foo
+            'test' => 'Recursive Testing',
+            'foo'  => 'Foo'
+        ]
     ]
 ];
 $list->render($listData);
@@ -67,7 +75,11 @@ $formData = [
     'full_name'  => 'John Doe',
     'age'        => 42,
     'created_at' => time(),
-    'content'    => 'lorem ipsum'
+    'content'    => 'lorem ipsum',
+    'recursive' [ # accessed via dot notation in yaml => recursive.test or recursive.foo
+        'test' => 'Recursive Testing',
+        'foo'  => 'Foo'
+     ]
 ];
 $form->render($formData);
 ```

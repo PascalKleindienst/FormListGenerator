@@ -48,7 +48,7 @@ class FormGenerator extends AbstractGenerator
         
         // Render list view
         $viewData = [
-            'records' => $data,
+            'records' => array_dot($data),
             'errors' => $errors
         ];
         $this->view->render('form', $viewData + $this->config);
