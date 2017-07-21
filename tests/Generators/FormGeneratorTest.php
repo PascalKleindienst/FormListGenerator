@@ -16,9 +16,62 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
         $this->generator = new FormGenerator('form.yaml');
     }
 
+    /** 
+ 	 * @param  mixed $obj
+ 	 * @param  string $propertyName
+ 	 * @return mixed
+ 	 */
+	public function getProperty($obj, $propertyName) {
+		$reflector = new \ReflectionClass($obj);
+		$property = $reflector->getProperty($propertyName);
+		$property->setAccessible(true);
+ 
+		return $property->getValue($obj);
+	}
+
     public function testGetFactory()
     {
         $this->assertInstanceOf(\PascalKleindienst\FormListGenerator\Fields\FieldFactory::class, $this->generator->getFactory());
+    }
+
+    public function testRemoveField()
+    {
+        // Mock View Class so we do not output anything
+        $generator = $this->generator;
+        $generator->view = $this->getMock('stdClass', ['render']);
+        $generator->view->expects($this->any())
+                ->method('render')
+                ->will($this->returnValue(''));
+
+        // Remove Fields
+        $generator->removeField('test');
+        
+        // Check if removed
+        $this->assertCount(2, $this->getProperty($generator, 'config')['fields']);
+        
+        $generator->render([]);
+        $this->assertCount(1,$this->getProperty($generator, 'config')['fields']);
+        $this->assertArrayHasKey('testSize',$this->getProperty($generator, 'config')['fields']);
+    }
+
+    public function testAddField()
+    {
+        // Mock View Class so we do not output anything
+        $generator = $this->generator;
+        $generator->view = $this->getMock('stdClass', ['render']);
+        $generator->view->expects($this->any())
+                ->method('render')
+                ->will($this->returnValue(''));
+
+        // Add Fields
+        $generator->addField('adding', ['type' => 'text', 'label' => 'Test Label']);
+        
+        // Check if added
+        $this->assertCount(2, $this->getProperty($generator, 'config')['fields']);
+        
+        $generator->render([]);
+        $this->assertCount(3,$this->getProperty($generator, 'config')['fields']);
+        $this->assertArrayHasKey('adding',$this->getProperty($generator, 'config')['fields']);
     }
 
     /**
@@ -36,7 +89,7 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
             '                    <small class="form-text text-muted">Some Description</small>'  . PHP_EOL .
             '                    </div>' . PHP_EOL .
             '    <div class="form-group col-md-6">' . PHP_EOL .
-            '        <label class="d-block">Size<input type="text" name="testSize" class=" form-control"></label>                    </div>' . PHP_EOL,
+            '        <label class="d-block">Size<select name="testSize" class=" form-control"><option value="a">b</option></select></label>                    </div>' . PHP_EOL,
             ob_get_contents()
         );
         ob_end_clean();
@@ -59,7 +112,7 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
             '            some error            </span>' . PHP_EOL .
             '            </div>' . PHP_EOL .
             '    <div class="form-group col-md-6">' . PHP_EOL .
-            '        <label class="d-block">Size<input type="text" name="testSize" class=" form-control"></label>                    </div>' . PHP_EOL,
+            '        <label class="d-block">Size<select name="testSize" class=" form-control"><option value="a">b</option></select></label>                    </div>' . PHP_EOL,
             ob_get_contents()
         );
         ob_end_clean();
@@ -80,7 +133,8 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
             'Translated: Some Comment</label></label>                    <small class="form-text text-muted">Translated: Some Description</small>' . PHP_EOL .
             '                    </div>' . PHP_EOL .
             '    <div class="form-group col-md-6">' . PHP_EOL .
-            '        <label class="d-block">Translated: Size<input type="text" name="testSize" class=" form-control"></label>                    </div>' . PHP_EOL,
+            '        <label class="d-block">Translated: Size<select name="testSize" class=" form-control"><option value="a">Translated: b</option></select></label>' .
+            '                    </div>' . PHP_EOL,
             ob_get_contents()
         );
         ob_end_clean();

@@ -7,3 +7,6 @@ fields:
   testSize:
     label: Size
     size: half
+    type: dropdown
+    options:
+      a: b
