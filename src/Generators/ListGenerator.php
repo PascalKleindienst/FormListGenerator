@@ -45,6 +45,5 @@ class ListGenerator extends AbstractGenerator
     public function createColumn($column, $config)
     {
         return new Column($column, $config, $this->config['recordUrl']);
-        ;
     }
 }
