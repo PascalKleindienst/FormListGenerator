@@ -15,6 +15,12 @@ class FormGenerator extends AbstractGenerator
     protected $remove = [];
 
     /**
+     * Fields to be added
+     * @var array
+     */
+    protected $add = [];
+
+    /**
      * {@inheritDoc}
      */
     public function render(array $data = [], array $errors = [])
@@ -28,6 +34,11 @@ class FormGenerator extends AbstractGenerator
             if (array_key_exists($field, $this->config['fields'])) {
                 unset($this->config['fields'][$field]);
             }
+        }
+
+        // Add Fields
+        foreach ($this->add as $field => $options) {
+            $this->config['fields'][$field] = $options;
         }
 
         // transform fields
@@ -62,6 +73,18 @@ class FormGenerator extends AbstractGenerator
     public function removeField($field)
     {
         $this->remove[] = $field;
+    }
+
+    /**
+     * Mark fields which should be added
+     *
+     * @param string $field
+     * @param array $options
+     * @return void
+     */
+    public function addField($field, array $options)
+    {
+        $this->add[$field] = $options;
     }
 
     /**
