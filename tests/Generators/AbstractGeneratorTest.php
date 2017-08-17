@@ -53,9 +53,9 @@ class AbstractGeneratorTest extends \PHPUnit_Framework_TestCase
         ;
     }
 
-     /**
-     * @dependsOn testConstructorWithValidConfig
-     */
+    /**
+    * @dependsOn testConstructorWithValidConfig
+    */
     public function testGetConfigItem()
     {
         Config::set(['root' => __DIR__]);
