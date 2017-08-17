@@ -99,6 +99,9 @@ class Field extends AbstractField
                 
                 $this->input->value($record);
                 break;
+            case 'number':
+                $this->input = $this->builder->text($this->fieldName)->attribute('type', 'number');
+                break;
             default:
                 $this->input = $this->builder->text($this->fieldName);
         }

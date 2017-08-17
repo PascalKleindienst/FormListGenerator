@@ -59,6 +59,15 @@ mail:
     type: email
 ```
 
+### Bumber
+`number` - renders a number field.
+
+```yaml
+mail:
+    label: Age
+    type: number
+```
+
 ### Password
 
 `password` - renders a single line password field.

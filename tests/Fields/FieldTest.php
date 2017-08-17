@@ -95,6 +95,11 @@ class FieldTest extends \PHPUnit_Framework_TestCase
                 [ 'label' => 'Label', 'type' => 'email' ],
                 '<label class="d-block">Label<input type="email" name="record" value="Value" class=" form-control"></label>'
             ],
+            'number input' => [
+                ['record' => '42'],
+                [ 'label' => 'Label', 'type' => 'number' ],
+                '<label class="d-block">Label<input type="number" name="record" value="42" class=" form-control"></label>'
+            ],
             'textarea input' => [
                 ['record' => 'Value'],
                 [ 'label' => 'Label', 'type' => 'textarea' ],
