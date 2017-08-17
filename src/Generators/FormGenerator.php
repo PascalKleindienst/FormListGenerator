@@ -107,7 +107,7 @@ class FormGenerator extends AbstractGenerator
         if (is_string($field) && class_exists($field) && is_subclass_of($field, AbstractField::class)) {
             $this->customFields[$type] = $field;
             return;
-        } 
+        }
 
         throw new \InvalidArgumentException('$field must inherit from ' . AbstractTest::class);
     }
