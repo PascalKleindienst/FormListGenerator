@@ -1,6 +1,7 @@
 <?php namespace PascalKleindienst\FormListGenerator\Generators;
 
 use PascalKleindienst\FormListGenerator\Fields\FieldFactory;
+use PascalKleindienst\FormListGenerator\Fields\AbstractField;
 
 /**
  * Form Generator class
@@ -19,6 +20,12 @@ class FormGenerator extends AbstractGenerator
      * @var array
      */
     protected $add = [];
+
+    /**
+     * Custom Field Types
+     * @var array
+     */
+    protected $customFields = [];
 
     /**
      * {@inheritDoc}
@@ -61,7 +68,7 @@ class FormGenerator extends AbstractGenerator
      */
     public function getFactory()
     {
-        return new FieldFactory();
+        return new FieldFactory($this->customFields);
     }
 
     /**
@@ -85,6 +92,24 @@ class FormGenerator extends AbstractGenerator
     public function addField($field, array $options)
     {
         $this->add[$field] = $options;
+    }
+
+    /**
+     * Add a field type
+     *
+     * @param string $type
+     * @param string|AbstractField $field
+     * @throws \InvalidArgumentExceptions if $field does not inherit from AbstractField
+     * @return void
+     */
+    public function addFieldType($type, $field)
+    {
+        if (is_string($field) && class_exists($field) && is_subclass_of($field, AbstractField::class)) {
+            $this->customFields[$type] = $field;
+            return;
+        } 
+
+        throw new \InvalidArgumentException('$field must inherit from ' . AbstractTest::class);
     }
 
     /**

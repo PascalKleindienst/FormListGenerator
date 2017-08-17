@@ -30,6 +30,16 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
         return $property->getValue($obj);
     }
 
+    public function mockView($generator)
+    {
+        $generator->view = $this->getMock('stdClass', ['render']);
+        $generator->view->expects($this->any())
+                ->method('render')
+                ->will($this->returnValue(''));
+
+        return $generator;
+    }
+
     public function testGetFactory()
     {
         $this->assertInstanceOf(\PascalKleindienst\FormListGenerator\Fields\FieldFactory::class, $this->generator->getFactory());
@@ -38,11 +48,7 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
     public function testRemoveField()
     {
         // Mock View Class so we do not output anything
-        $generator = $this->generator;
-        $generator->view = $this->getMock('stdClass', ['render']);
-        $generator->view->expects($this->any())
-                ->method('render')
-                ->will($this->returnValue(''));
+        $generator = $this->mockView($this->generator);
 
         // Remove Fields
         $generator->removeField('test');
@@ -58,11 +64,7 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
     public function testAddField()
     {
         // Mock View Class so we do not output anything
-        $generator = $this->generator;
-        $generator->view = $this->getMock('stdClass', ['render']);
-        $generator->view->expects($this->any())
-                ->method('render')
-                ->will($this->returnValue(''));
+        $generator = $this->mockView($this->generator);
 
         // Add Fields
         $generator->addField('adding', ['type' => 'text', 'label' => 'Test Label']);
@@ -73,6 +75,31 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
         $generator->render([]);
         $this->assertCount(3, $this->getProperty($generator, 'config')['fields']);
         $this->assertArrayHasKey('adding', $this->getProperty($generator, 'config')['fields']);
+    }
+
+    public function testAddFieldType()
+    {
+        // Mock View Class so we do not output anything
+        $generator = $this->mockView($this->generator);
+
+        // Add Fields
+        $generator->addFieldType('testing', \PascalKleindienst\FormListGenerator\Fields\Field::class);
+        
+        // Check if added
+        $this->assertCount(1, $this->getProperty($generator, 'customFields'));
+        $this->assertArrayHasKey('testing', $this->getProperty($generator, 'customFields'));
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testAddFieldTypeThrowsExceptionIfFieldDoesNotInheritAbstractField()
+    {
+        // Mock View Class so we do not output anything
+        $generator = $this->mockView($this->generator);
+
+        // Add Fields
+        $generator->addFieldType('test', \std::class);
     }
 
     /**

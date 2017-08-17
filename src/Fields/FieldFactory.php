@@ -7,6 +7,22 @@
 class FieldFactory
 {
     /**
+     * Custom Field Types
+     * @var array
+     */
+    public $customFields = [];
+
+    /**
+     * Set Custom fields
+     *
+     * @param array $fields
+     */
+    public function __construct(array $fields = [])
+    {
+        $this->customFields = $fields;
+    }
+
+    /**
      * Create new Field class.
      *
      * @param string $name
@@ -29,6 +45,12 @@ class FieldFactory
                 break;
             default:
                 $field = new Field($name, $config);
+
+                // Custom Field
+                if (array_key_exists($type, $this->customFields)) {
+                    $class = $this->customFields[$type];
+                    $field = new $class($name, $config);
+                }
         }
 
         $field->setup();

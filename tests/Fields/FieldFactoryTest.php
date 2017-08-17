@@ -21,6 +21,14 @@ class FieldFactoryTest extends \PHPUnit_Framework_TestCase
         $this->factory = new FieldFactory();
     }
 
+    public function testConstructor()
+    {
+        $factory = new FieldFactory(['testing' => Field::class]);
+        
+        $this->assertCount(1, $factory->customFields);
+        $this->assertArrayHasKey('testing', $factory->customFields);
+    }
+
     public function testCreateDefaultField()
     {
         $this->assertInstanceOf(
@@ -52,6 +60,19 @@ class FieldFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(
             PartialHTMLField::class,
             $this->factory->create('partial-name', ['type' => 'partial'])
+        );
+    }
+
+    /**
+     * @dependsOn testConstructor
+     */
+    public function testCreateCustomField()
+    {
+        $factory = new FieldFactory(['testing' => PartialHTMLField::class]);
+
+        $this->assertInstanceOf(
+            PartialHTMLField::class,
+            $factory->create('custom-name', ['type' => 'testing'])
         );
     }
 }
