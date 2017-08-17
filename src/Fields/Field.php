@@ -30,7 +30,8 @@ class Field extends AbstractField
     public function getValue(array $records = [])
     {
         // Types
-        $this->initInputType($this->getRecord($records));
+        $record = $this->getRecord($records);
+        $this->initInputType($record);
         
         // Attributes
         $this->setAttributes();
@@ -57,6 +58,10 @@ class Field extends AbstractField
         if (isset($this->config['comment'])) {
             $this->cssClass = str_replace('form-control', '', $this->cssClass);
             $this->input = $this->labelAfterInput(' ' . $this->config['comment']);
+        }
+
+        if ($this->type === 'image' && isset($record)) {
+            $this->label .= '<br/> <img src="' . $record . '" class="preview_' . $this->fieldName . '" />';
         }
 
         // Css
@@ -101,6 +106,12 @@ class Field extends AbstractField
                 break;
             case 'number':
                 $this->input = $this->builder->text($this->fieldName)->attribute('type', 'number');
+                break;
+            case 'file':
+                $this->input = $this->builder->file($this->fieldName);
+                break;
+            case 'image':
+                $this->input = $this->builder->file($this->fieldName)->attribute('accept', 'image/*');
                 break;
             default:
                 $this->input = $this->builder->text($this->fieldName);

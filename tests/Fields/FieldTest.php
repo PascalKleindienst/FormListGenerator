@@ -100,6 +100,16 @@ class FieldTest extends \PHPUnit_Framework_TestCase
                 [ 'label' => 'Label', 'type' => 'number' ],
                 '<label class="d-block">Label<input type="number" name="record" value="42" class=" form-control"></label>'
             ],
+            'file input' => [
+                ['record' => 'http://via.placeholder.com/350x150'],
+                [ 'label' => 'Label', 'type' => 'file' ],
+                '<label class="d-block">Label<input type="file" name="record" value="http://via.placeholder.com/350x150" class=" form-control"></label>'
+            ],
+            'image input' => [
+                ['record' => 'http://via.placeholder.com/350x150'],
+                [ 'label' => 'Label', 'type' => 'image' ],
+                '<label class="d-block">Label<br/> <img src="http://via.placeholder.com/350x150" class="preview_record" /><input type="file" name="record" accept="image/*" value="http://via.placeholder.com/350x150" class=" form-control"></label>'
+            ],
             'textarea input' => [
                 ['record' => 'Value'],
                 [ 'label' => 'Label', 'type' => 'textarea' ],

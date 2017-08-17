@@ -98,6 +98,24 @@ blog_contents:
     type: textarea
 ```
 
+### File Upload
+
+`file` - renders a file upload
+
+```yaml
+file:
+    label: Attachment
+    type: file
+```
+
+`image` - renders a file upload which only accepts images and displays the image record
+
+```yaml
+avatar:
+    label: Avatar
+    type: image
+```
+
 ### Dropdown
 
 `dropdown` - renders a dropdown with specified options. There are 2 ways to provide the drop-down options. The first method defines options directly in the YAML file:
