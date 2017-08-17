@@ -21,7 +21,7 @@
     ],
     "require": {
         "php": "~5.5|~5.6|~7.0",
-        "adamwathan/form": "^0.8.12",
+        "adamwathan/form": "^0.9.0",
         "symfony/yaml": "^3.3",
         "weew/helpers-array": "^1.3"
     },
