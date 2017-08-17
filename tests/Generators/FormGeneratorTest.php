@@ -32,7 +32,7 @@ class FormGeneratorTest extends \PHPUnit_Framework_TestCase
 
     public function mockView($generator)
     {
-        $generator->view = $this->getMockBuilder('stdClass', ['render'])->getMock();
+        $generator->view = $this->getMockBuilder(\PascalKleindienst\FormListGenerator\Support\View::class)->getMock();
         $generator->view->expects($this->any())
                 ->method('render')
                 ->will($this->returnValue(''));
