@@ -55,7 +55,7 @@ class View
 
         // load file
         extract($data);
-        include_once($fullpath);
+        include($fullpath);
     }
 
     /**
